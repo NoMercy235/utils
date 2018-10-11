@@ -81,6 +81,50 @@ Convert an object into a string, where each object's property is a class name.
 ```
 import { Utils } from '@nomercy235/utils';
 
-Utils.getClassesFromObject({ 'il-dot': false, 'btn': true, 'btn-default': true }
+Utils.getClassesFromObject({ 'il-dot': false, 'btn': true, 'btn-default': true })
 // => 'btn btn-default'
+```
+
+- `generateId(str: string, tailDigits: number)`
+
+Generate a unique id based on a given string and with some digits at the end.
+
+```
+import { Utils } from '@nomercy235/utils';
+
+Utils.generateId('myId')
+// => myId-4325
+```
+
+- `flattenObject(obj: Object)`
+
+Make every nested properties of an object a property of depth 1.
+
+```
+import { Utils } from '@nomercy235/utils';
+
+const myObj = { a: { prop1: 'depth2' }, b: { prop2: 'depth2' } }
+Utils.flattenObject(myObj)
+// => { prop1: 'depth2', prop2: 'depth2' }
+```
+
+- `deepCopy(obj: Object)`
+
+Deep copy of the given object to ensure that no reference is held back to.
+
+Courtesy to the [clone](https://www.npmjs.com/package/clone)
+
+```
+import { Utils } from '@nomercy235/utils';
+
+const myObj = { nested: { arr: [1, 2, 3] } }
+const newObj = Utils.deepCopy(myObj)
+myObj.nested === newObj.nested
+// => false
+
+// As opposed to
+const myObj = { nested: { arr: [1, 2, 3] } }
+const newObj = Object.assign({}, myObj)
+myoBJ.nested === newObj.nested
+// => true
 ```

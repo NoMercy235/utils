@@ -65,6 +65,7 @@
     "rollup-watch": "^3.2.2"
   },
   "dependencies": {
+    "clone": "^2.1.2",
     "debug": "^2.6.0",
     "safe-access": "^0.1.0"
   },
