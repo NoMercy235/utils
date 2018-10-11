@@ -13,15 +13,74 @@ See the video of how this was made [here](http://dev.topheman.com/package-a-modu
 
 ``` sh
 # Clone the repo
-git clone git@github.com:jlengstorf/learn-rollup.git
+git clone git@github.com:NoMercy235/utils.git
 
 # Move into the repo
-cd learn-rollup/
+cd  utils/
 
 # Install dependencies
 npm install
 
-# Start the watcher
-npm run watch
+# Run tests
+npm test
 ```
 
+## Usage
+
+This library works with both Harmony and CommonJS modules.
+
+### Utils library
+
+- `safeAccess(obj: Object, path: string, ...args)`
+
+Safely access a property located at any depth of an object. Returns undefined if the path does not exist.
+
+It's just a middleware for the [safe-access](https://www.npmjs.com/package/safe-access) library.
+
+```
+import { Utils } from '@nomercy235/utils';
+
+const myObj = { path: { to: { deep: { property: 'myValue' } } } };
+
+// Usually you'd try to reach the `property` property like this:
+// if (myObj.path && myObj.path.to && myObj.path.to.deep && myObj.path.to.deep.property) {
+//    ... code
+// }
+
+// Now you can do it like this:
+if (Utils.safeAccess(myObj, 'path.to.deep.property')) {
+  // code
+}
+
+// It also works with functions
+const myFoo = { path: { to: { foo: () => { console.log('Hello world!'); } } } };
+Utils.safeAccess(myFoo, 'path.to.foo()');
+// => Hello world!
+
+// You can also pass arguments
+const myFoo = { path: { to: { foo: (name) => { console.log(`Hello ${name}!`); } } } };
+Utils.safeAccess(myFoo, 'path.to.foo()', 'world');
+// => Hello world!
+```
+
+- `flattenArray(arr: any[])``
+
+Turns an array of any dimension into a one-dimensional array.
+
+```
+import { Utils } from '@nomercy235/utils';
+
+Utils.flattenArray([1, [2, 3], [4, [5, [6]]]])
+// => [1, 2, 3, 4, 5, 6]
+```
+
+- `getClassesFromObject(obj: Object)`
+
+Convert an object into a string, where each object's property is a class name.
+
+```
+import { Utils } from '@nomercy235/utils';
+
+Utils.getClassesFromObject({ 'il-dot': false, 'btn': true, 'btn-default': true }
+// => 'btn btn-default'
+```
