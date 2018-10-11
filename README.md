@@ -1,8 +1,13 @@
-# Learn Rollup.js
+# Utils.js
 
-This is an example project to accompany a tutorial on using [Rollup](http://rollupjs.org/).
+Across your work, you will most likely encounter different problems which are solved by copying code from a project to another. I've been there, done that.
 
-See the video of how this was made at https://code.lengstorf.com/learn-rollup-js/
+Therefore, I have made this library which exposes my most used classes and methods for accessibility sake.
+
+Feel free to contribute if you feel like.
+
+Credits:
+See the video of how this was made [here](http://dev.topheman.com/package-a-module-for-npm-in-commonjs-es2015-umd-with-babel-and-rollup/)
 
 ## Quickstart
 
