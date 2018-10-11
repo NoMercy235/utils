@@ -19,7 +19,6 @@ export default {
     eslint(),
     babel({
       exclude: 'node_modules/**',
-      plugins: ['external-helpers'],
     }),
     replace({
       exclude: 'node_modules/**',
