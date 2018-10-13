@@ -5,9 +5,9 @@ const clone = require('clone');
  * @desc Helper method to access the property of an object in a safe manner.
  * @param {Object} obj: The object you want to access.
  * @param {string} path: Written in dot notation.
- * @param {any[]} args: In case you want to call a function, you can also send
+ * @param {*[]} args: In case you want to call a function, you can also send
  * arguments to it.
- * @returns {any}
+ * @returns {*}
  *
  * Usage examples:
  * safeAccess(obj, 'path.to.property')
@@ -19,8 +19,8 @@ export function safeAccess(obj, path, ...args) {
 
 /**
  * @desc Turn any array into one dimension.
- * @param {any[]} arr: The array to be flattened.
- * @returns {any[]}: the flattened array.
+ * @param {*[]} arr: The array to be flattened.
+ * @returns {*[]}: the flattened array.
  *
  * Usage example:
  * flattenArray([1, [2, 3], [4, [5, [6]]]])
