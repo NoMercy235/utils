@@ -65,6 +65,7 @@
     "rollup-watch": "^3.2.2"
   },
   "dependencies": {
+    "async-function-queue": "^1.0.0",
     "clone": "^2.1.2",
     "debug": "^2.6.0",
     "safe-access": "^0.1.0"
