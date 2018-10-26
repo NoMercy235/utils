@@ -81,7 +81,7 @@ Convert an object into a string, where each object's property is a class name.
 ```
 import { Utils } from '@nomercy235/utils';
 
-Utils.getClassesFromObject({ 'il-dot': false, 'btn': true, 'btn-default': true })
+Utils.getClassesFromObject({ 'dot': false, 'btn': true, 'btn-default': true })
 // => 'btn btn-default'
 ```
 

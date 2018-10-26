@@ -39,7 +39,7 @@ export function flattenArray(arr) {
  * @returns {string}
  *
  * Usage examples:
- * getClassesFromObject({ 'il-dot': false, 'btn': true, 'btn-default': true }
+ * getClassesFromObject({ 'dot': false, 'btn': true, 'btn-default': true }
  * => 'btn btn-default'
  */
 export function getClassesFromObject(obj) {
