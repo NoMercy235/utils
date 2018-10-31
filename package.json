@@ -68,6 +68,7 @@
     "async-function-queue": "^1.0.0",
     "clone": "^2.1.2",
     "debug": "^2.6.0",
+    "rxjs": "^6.3.3",
     "safe-access": "^0.1.0"
   },
   "pre-commit": [
