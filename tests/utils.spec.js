@@ -13,7 +13,7 @@ describe('Utils test suite', () => {
       ['a.b.c', 'a()'].forEach(path => {
         const value = Utils.safeAccess(myObj, path);
         expect(value).toBe(undefined);
-      })
+      });
     });
 
     it('Should call the method with the given arguments.', () => {

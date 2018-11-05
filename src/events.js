@@ -34,10 +34,11 @@ export class EventsService {
       event.forEach(e => this.notifyDataChanged(e, value, context));
       return;
     }
-    this.lastValues[event] = value;
+    const payload = { value, context };
+
+    this.lastValues[event] = payload;
     // If none subscribed yet to the event, don't call next().
     if (!this.stream[event]) return;
-    const payload = { value, context };
     this.stream[event].next(payload);
   }
 
@@ -102,11 +103,12 @@ export class EventsService {
    * @param {string | string[]} event: The name of the event.
    * @param {*} value: The value to be stored.
    */
-  setCurrentValue(event, value) {
+  setCurrentValue(event, value, context = null) {
     if (Array.isArray(event)) {
-      event.forEach(e => this.setCurrentValue(e, value));
+      event.forEach(e => this.setCurrentValue(e, value, context));
       return;
     }
-    this.lastValues[event] = value;
+    const payload = { value, context };
+    this.lastValues[event] = payload;
   }
 }
