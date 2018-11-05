@@ -128,3 +128,29 @@ const newObj = Object.assign({}, myObj)
 myoBJ.nested === newObj.nested
 // => true
 ```
+
+### Queue library
+
+Instantiate an object specifying the maximum number of concurrency functions.
+
+```
+import { Queue } from '@nomercy235/utils';
+
+const queueService = new QueueService(5);
+```
+
+- `push(cb: Function)`
+
+Push a function into the queue. It will be executed as soon as the concurrency filter allows it.
+
+- `setOnEntryCb(cb: Function)`
+
+Callback to be called whenever a function inside the queue starts executing
+
+- `setOnExitCb(cb: Function)`
+
+Callback to be called whenever a function which is executing finishes execution
+
+- `setOnDrainCb(cb: Function)`
+
+Callback to be called when the queue finishes all the functions.
