@@ -37,7 +37,7 @@ Safely access a property located at any depth of an object. Returns undefined if
 
 It's just a middleware for the [safe-access](https://www.npmjs.com/package/safe-access) library.
 
-```
+```javascript
 import { Utils } from '@nomercy235/utils';
 
 const myObj = { path: { to: { deep: { property: 'myValue' } } } };
@@ -67,7 +67,7 @@ Utils.safeAccess(myFoo, 'path.to.foo()', 'world');
 
 Turns an array of any dimension into a one-dimensional array.
 
-```
+```javascript
 import { Utils } from '@nomercy235/utils';
 
 Utils.flattenArray([1, [2, 3], [4, [5, [6]]]])
@@ -78,7 +78,7 @@ Utils.flattenArray([1, [2, 3], [4, [5, [6]]]])
 
 Convert an object into a string, where each object's property is a class name.
 
-```
+```javascript
 import { Utils } from '@nomercy235/utils';
 
 Utils.getClassesFromObject({ 'dot': false, 'btn': true, 'btn-default': true })
@@ -89,7 +89,7 @@ Utils.getClassesFromObject({ 'dot': false, 'btn': true, 'btn-default': true })
 
 Generate a unique id based on a given string and with some digits at the end.
 
-```
+```javascript
 import { Utils } from '@nomercy235/utils';
 
 Utils.generateId('myId')
@@ -100,7 +100,7 @@ Utils.generateId('myId')
 
 Make every nested properties of an object a property of depth 1.
 
-```
+```javascript
 import { Utils } from '@nomercy235/utils';
 
 const myObj = { a: { prop1: 'depth2' }, b: { prop2: 'depth2' } }
@@ -114,7 +114,7 @@ Deep copy of the given object to ensure that no reference is held back to.
 
 Courtesy to the [clone](https://www.npmjs.com/package/clone)
 
-```
+```javascript
 import { Utils } from '@nomercy235/utils';
 
 const myObj = { nested: { arr: [1, 2, 3] } }
@@ -133,7 +133,7 @@ myoBJ.nested === newObj.nested
 
 Instantiate an object specifying the maximum number of concurrency functions.
 
-```
+```javascript
 import { Queue } from '@nomercy235/utils';
 
 const queueService = new QueueService(5);
@@ -158,7 +158,7 @@ Callback to be called when the queue finishes all the functions.
 ### EventsService library
 
 A singleton service which handles the communication of different parts of your code through events.
-```
+```javascript
 import { EventsService } from '@nomercy235/utils';
 ```
 
@@ -166,14 +166,14 @@ import { EventsService } from '@nomercy235/utils';
 
 This method notifies all subscribers that an event has occurred.
 
-```
+```javascript
 payload = { prop: 'data' };
 eventsService.notifyDataChanged('my_event', payload);
 ```
 
 - `subscribe(event: string, callback: Function, options: EventsServiceOptions): Subscription`
 
-```
+```javascript
 interface EventsServiceOptions {
   subscriptions: Subscription[];
   withLastValue: boolean;
@@ -184,7 +184,7 @@ This method subscribes to an event so that the caller can react when a change ha
 
 If you want to have your callback called immediately with the lastValue that was sent on the event stream, you can specify it with the `withLastValue` property.
 
-```
+```javascript
 // at some point
 eventsService.notifyDataChanged('my_event', 'immediately');
 
@@ -197,14 +197,14 @@ eventsService.subscribe(
 ```
 
 You will need to unsubscribe the resulted subscription when you no longer need it. If you want to do that, there are two options:
-- Either save the Subscription returned by the `subscribe` method and call the `unsubscribe` method with an array containing the Subscription:
-```
+    - Either save the Subscription returned by the `subscribe` method and call the `unsubscribe` method with an array containing the Subscription:
+```javascript
 const sub = eventService.subscribe(...);
 eventsService.unsubscribe([sub])
 ```
 
-- Pass an object to the `subscriptions` property of the `options` argument
-```
+    - Pass an object to the `subscriptions` property of the `options` argument
+```javascript
 const subs = {};
 eventsService.subscribe(..., { subscriptions: subs });
 eventsService.subscribe(..., { subscriptions: subs });
@@ -212,10 +212,13 @@ eventsService.unsubscribe(subs);
 ```
 
 - `unsubscribe(subs: Subscription[] | { [event_name]: Subscription: [] })`
+
 Unsubscribes all subscriptions from an event to avoid memory leak.
 
 - `getCurrentValue(event: string, defaultValue: any = null)`
+
 Get the current value stored in an event stream or a default one if the event stream doesn't have any.
 
 - `setCurrentValue(event: string, value: any, context: any = null)`
+
 Set the value for an event stream.
