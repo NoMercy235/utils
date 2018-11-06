@@ -102,13 +102,13 @@ export class EventsService {
    * @desc Set the value for an event stream.
    * @param {string | string[]} event: The name of the event.
    * @param {*} value: The value to be stored.
+   * @param {*} context: The context to be stored.
    */
   setCurrentValue(event, value, context = null) {
     if (Array.isArray(event)) {
       event.forEach(e => this.setCurrentValue(e, value, context));
       return;
     }
-    const payload = { value, context };
-    this.lastValues[event] = payload;
+    this.lastValues[event] = { value, context };
   }
 }

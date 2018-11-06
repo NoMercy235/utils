@@ -154,3 +154,68 @@ Callback to be called whenever a function which is executing finishes execution
 - `setOnDrainCb(cb: Function)`
 
 Callback to be called when the queue finishes all the functions.
+
+### EventsService library
+
+A singleton service which handles the communication of different parts of your code through events.
+```
+import { EventsService } from '@nomercy235/utils';
+```
+
+- `notifyDataChanged(event: string | string[], value?: any, context?: any)`
+
+This method notifies all subscribers that an event has occurred.
+
+```
+payload = { prop: 'data' };
+eventsService.notifyDataChanged('my_event', payload);
+```
+
+- `subscribe(event: string, callback: Function, options: EventsServiceOptions): Subscription`
+
+```
+interface EventsServiceOptions {
+  subscriptions: Subscription[];
+  withLastValue: boolean;
+}
+```
+
+This method subscribes to an event so that the caller can react when a change happens on that specific event.
+
+If you want to have your callback called immediately with the lastValue that was sent on the event stream, you can specify it with the `withLastValue` property.
+
+```
+// at some point
+eventsService.notifyDataChanged('my_event', 'immediately');
+
+// later in your app
+eventsService.subscribe(
+  'my_event',
+  val => console.log('called ' + val),
+  { withLastValue: true }
+);
+```
+
+You will need to unsubscribe the resulted subscription when you no longer need it. If you want to do that, there are two options:
+- Either save the Subscription returned by the `subscribe` method and call the `unsubscribe` method with an array containing the Subscription:
+```
+const sub = eventService.subscribe(...);
+eventsService.unsubscribe([sub])
+```
+
+- Pass an object to the `subscriptions` property of the `options` argument
+```
+const subs = {};
+eventsService.subscribe(..., { subscriptions: subs });
+eventsService.subscribe(..., { subscriptions: subs });
+eventsService.unsubscribe(subs);
+```
+
+- `unsubscribe(subs: Subscription[] | { [event_name]: Subscription: [] })`
+Unsubscribes all subscriptions from an event to avoid memory leak.
+
+- `getCurrentValue(event: string, defaultValue: any = null)`
+Get the current value stored in an event stream or a default one if the event stream doesn't have any.
+
+- `setCurrentValue(event: string, value: any, context: any = null)`
+Set the value for an event stream.
