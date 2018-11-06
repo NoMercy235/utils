@@ -203,14 +203,14 @@ eventsService.subscribe(
 ```
 
 You will need to unsubscribe the resulted subscription when you no longer need it. If you want to do that, there are two options:
-  - Either save the Subscription returned by the `subscribe` method and call the `unsubscribe` method with an array containing the Subscription:
+  1. Either save the Subscription returned by the `subscribe` method and call the `unsubscribe` method with an array containing the Subscription:
 
 ```javascript
 const sub = eventService.subscribe(...);
 eventsService.unsubscribe([sub])
 ```
 
-  - Pass an object to the `subscriptions` property of the `options` argument
+  2. Pass an object to the `subscriptions` property of the `options` argument
 
 ```javascript
 const subs = {};
