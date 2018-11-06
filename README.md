@@ -9,6 +9,12 @@ Feel free to contribute if you feel like.
 Credits:
 See the video of how this was made [here](http://dev.topheman.com/package-a-module-for-npm-in-commonjs-es2015-umd-with-babel-and-rollup/)
 
+## Install
+
+```sh
+npm install @nomercy235/utils
+```
+
 ## Quickstart
 
 ``` sh
@@ -197,13 +203,15 @@ eventsService.subscribe(
 ```
 
 You will need to unsubscribe the resulted subscription when you no longer need it. If you want to do that, there are two options:
-    - Either save the Subscription returned by the `subscribe` method and call the `unsubscribe` method with an array containing the Subscription:
+  - Either save the Subscription returned by the `subscribe` method and call the `unsubscribe` method with an array containing the Subscription:
+
 ```javascript
 const sub = eventService.subscribe(...);
 eventsService.unsubscribe([sub])
 ```
 
-    - Pass an object to the `subscriptions` property of the `options` argument
+  - Pass an object to the `subscriptions` property of the `options` argument
+
 ```javascript
 const subs = {};
 eventsService.subscribe(..., { subscriptions: subs });
